@@ -1,12 +1,3 @@
-cos(w*x) = 0.5 * ( e^(jwt) + e^(-jwt) )
+[here](latenighticecream.github.io/2019/06/02/first-post.html)
 
-The addition of two complex numbers rotating in opposite directions with the same frequency results in a cosine function with that frequency.
-<br>
-
-# cos x
-![normal](images/normal.gif)
-
-# Different frequencies
-![changed1](images/changed1.gif)
-
-![changed2](images/changed2.gif)
+![yeah](regular.png)

@@ -1,4 +1,4 @@
-
+var fc = 0;
 var orb1;
 
 var circleRadius;
@@ -15,9 +15,9 @@ var t = 0;
 
 function setup() {
 
-  createCanvas(1000, 1000);
+  createCanvas(1000, 1000*0.618+50);
 
-  colorMode(HSB, 360, 100, 100);
+  //colorMode(HSB, 360, 100, 100);
 
 
   /////////////////////////////////
@@ -31,44 +31,50 @@ function setup() {
 
     circleX = circleX + pow(-1, i) * circleDia/2;
 
-    circle(circleX, circleY, circleDia);
 
-    orbitArray.push(new Orbit(circleX, circleY, circleDia, 33, 0));
+    orbitArray.push(new Orbit(circleX, circleY, circleDia, 6, 0));
 
   }
 
   frameRate(60);
-
 }
 
 
 function draw() {
 
-  background(0, 0, 33);
+  background("#FFFFFF");
 
   noFill();
-  stroke(0,0,50);
+  stroke(0,0,0);
 
   for(var i = 0; i < orbitArray.length; i++) {
 
-    orbitArray[i].t += 0.1/(i+1);
+    if(orbitArray[9].t < 5.026) {
+      orbitArray[i].t += 0.1/(i+1);
+    }
     //orbitArray[i].numOfPlanets = i*round(sin(t*i));
     //orbitArray[i].hue = 360*abs(sin(0.05 * t));
-    orbitArray[i].planetHue = 0;
+    orbitArray[i].planetHue = 100;
     orbitArray[i].planetSat = 120*0.382;
     orbitArray[i].planetD = orbitArray[i].cD * 0.0557281;
     strokeWeight(orbitArray[i].planetD/2 * 0.618);
 
-    orbitArray[i].orbitBri = 100;
-    orbitArray[i].orbitHue = orbitArray[i].planetHue * 0.382;
+    orbitArray[i].orbitBri = 75;
+    orbitArray[i].orbitHue = 165;//orbitArray[i].planetHue * 0.382;
     orbitArray[i].orbitSat = orbitArray[i].planetSat * 0.382;
 
     orbitArray[i].show();
 
   }
 
+  print(orbitArray[9].t);
 
-  t += 0.01;
+  if(orbitArray[9].t < 5.026) {
+
+    save("orb_"+fc+".png");
+    fc += 1;
+
+  }
 
 }
 
@@ -100,11 +106,12 @@ class Orbit {
   show() {
 
     noFill();
-    stroke(this.orbitHue,this.orbitSat,this.orbitBri);
+//    stroke(this.orbitHue,this.orbitSat,this.orbitBri);
+    stroke("#dee2e6");
     circle(this.cX, this.cY, this.cD);
 
     // planet(s)
-    fill(this.planetHue,this.planetSat,this.planetBri);
+    fill("#96f2d7");
 
     for(var i = 0; i<this.numOfPlanets; i++) {
 
@@ -118,4 +125,7 @@ class Orbit {
 
   }
 
+}
+function mousePressed(){
+// save("regular.png"); 
 }
